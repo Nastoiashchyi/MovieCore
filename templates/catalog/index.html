@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Home — MovieCore{% endblock %}
+{% block content %}
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold">🎬 MovieCore</h1>
+      <p class="lead">Каталог найкращих фільмів. Досліджуй. Оцінюй. Дивись.</p>
+    </div>
+    <hr class="my-4">
+    <h2 class="mb-4 text-primary">🔥 Топ-3 фільми за рейтингом</h2>
+    <p>All contents:</p>
+    <ul>
+        <li><strong>Actors:</strong> {{ num_actors }}</li>
+        <li><strong>Director:</strong> {{ num_directors }}</li>
+        <li><strong>Movie:</strong> {{ num_movies }}</li>
+        <li><strong>Genre:</strong> {{ num_genres }}</li>
+    </ul>
+
+    <p>You have visited this page
+        {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+
+{% endblock %}
+
+
+{#<div class="row row-cols-1 row-cols-md-3 g-4">#}
+{#  {% for movie in top_movies %}#}
+{#  <div class="col">#}
+{#    <div class="card h-100 shadow-sm">#}
+{#      {% if movie.poster %}#}
+{#        <img src="{{ movie.poster.url }}" class="card-img-top" alt="{{ movie.title }}">#}
+{#      {% else %}#}
+{#        <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No poster">#}
+{#      {% endif %}#}
+{#      <div class="card-body">#}
+{#        <h5 class="card-title">{{ movie.title }}</h5>#}
+{#        <p class="card-text">{{ movie.description|truncatewords:20 }}</p>#}
+{#      </div>#}
+{#      <div class="card-footer d-flex justify-content-between align-items-center">#}
+{#        <small class="text-muted">⭐ {{ movie.rating }}</small>#}
+{#        <a href="{% url 'movie_detail' movie.id %}" class="btn btn-outline-primary btn-sm">Детальніше</a>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  {% endfor %}#}
+{#</div>#}
+{##}
+{#<hr class="my-5">#}
+{##}
+{#<div class="text-center">#}
+{#  <a href="{% url 'movie_list' %}" class="btn btn-lg btn-primary">Переглянути всі фільми</a>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}
