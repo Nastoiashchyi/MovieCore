@@ -7,16 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'movie_list' %}active{% endif %}" href="{% url 'catalog:movie_list' %}">Фільми</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'movie_list' %}active{% endif %}" href="{% url 'catalog:movie_list' %}">Movies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'actor_list' %}active{% endif %}" href="{% url 'catalog:actor_list' %}">Актори</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'actor_list' %}active{% endif %}" href="{% url 'catalog:actor_list' %}">Actores</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'director_list' %}active{% endif %}" href="{% url 'catalog:director_list' %}">Режисери</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'director_list' %}active{% endif %}" href="{% url 'catalog:director_list' %}">Directores</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'genre_list' %}active{% endif %}" href="{% url 'catalog:genre_list' %}">Жанри</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'genre_list' %}active{% endif %}" href="{% url 'catalog:genre_list' %}">Genres</a>
       </li>
     </ul>
 

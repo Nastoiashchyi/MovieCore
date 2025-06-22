@@ -34,34 +34,31 @@ class GenreListView(generic.ListView):
     model = Genre
     template_name = "catalog/genre_list.html"
     context_object_name = "genre_list"
-    ordering = ["name"]
 
     def get_queryset(self):
-        return Genre.objects.annotate(movie_count=Count("movie"))
+        return Genre.objects.annotate(movie_count=Count("movie")).order_by("-movie_count")
 
 
 class DirectorListView(generic.ListView):
     model = Director
     template_name = "catalog/director_list.html"
     context_object_name = "director_list"
-    # ordering = ["first_name", "last_name"]
 
     def get_queryset(self):
-        return Director.objects.annotate(movie_count=Count("movie"))
+        return Director.objects.annotate(movie_count=Count("movie")).order_by("first_name", "last_name")
 
 
 class ActorListView(generic.ListView):
     model = Actor
     template_name = "catalog/actor_list.html"
     context_object_name = "actor_list"
-    # ordering = ["first_name"]
 
     def get_queryset(self):
-        return Actor.objects.annotate(movie_count=Count("role__movie", distinct=True))
+        return Actor.objects.annotate(movie_count=Count("role__movie", distinct=True)).order_by("first_name", "last_name")
 
 
 class MovieListView(generic.ListView):
     model = Movie
     template_name = "catalog/movie_list.html"
     context_object_name = "movie_list"
-    # ordering = ["-release_date"]
+    ordering = ["-release_date"]

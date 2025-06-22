@@ -5,11 +5,13 @@
 <h2>Genre list</h2>
 
     {% if genre_list %}
-    <table class="table">
+    <table class="table table-bordered table-sm">
+      <thead class="table-dark">
       <tr>
         <th>Name</th>
         <th>Count</th>
       </tr>
+      </thead>
     {% for genre in genre_list %}
       <tr>
         <td>{{ genre.name }}</td>

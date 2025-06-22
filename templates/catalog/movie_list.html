@@ -6,14 +6,18 @@
 
 
     {% if movie_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Release date</th>
-        <th>Rating</th>
-        <th>Director</th>
-      </tr>
+    <table class="table table-bordered table-sm">
+      <thead class="table-dark">
+
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Release date</th>
+          <th>Rating</th>
+          <th>Director</th>
+        </tr>
+      </thead>
+
     {% for movie in movie_list %}
       <tr>
         <td>{{ movie.id }}</td>

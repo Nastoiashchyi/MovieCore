@@ -2,10 +2,12 @@
 {% block title %}🎬Directors list — MovieCore{% endblock %}
 
 {% block content %}
-<h2>Director list</h2>
 
-    {% if director_list %}
-    <table class="table">
+<h2 class="mb-4">Director list</h2>
+
+  {% if director_list %}
+    <table class="table table-bordered table-sm">
+      <thead class="table-dark">
       <tr>
         <th>ID</th>
         <th>First name</th>
@@ -13,6 +15,8 @@
         <th>Username</th>
         <th>Movie</th>
       </tr>
+      </thead>
+
     {% for director in director_list %}
       <tr>
         <td>{{ director.id }}</td>
@@ -24,9 +28,9 @@
     {% endfor %}
 
     </table>
-    {% else %}
-      <p>No movie</p>
-    {% endif %}
+  {% else %}
+    <p>No movie</p>
+  {% endif %}
 
 {#{% include "includes/pagination.html" %}#}
 {% endblock %}
