@@ -1,10 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Genre list — MovieCore{% endblock %}
+{% block title %}🎬Genre list — MovieCore{% endblock %}
 
 {% block content %}
 <h2>Genre list</h2>
 
+    {% if genre_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Count</th>
+      </tr>
+    {% for genre in genre_list %}
+      <tr>
+        <td>{{ genre.name }}</td>
+        <td>{{ genre.movie_count }}</td>
 
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>No movie</p>
+    {% endif %}
 
 {#{% include "includes/pagination.html" %}#}
 {% endblock %}

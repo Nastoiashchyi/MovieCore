@@ -1,53 +1,86 @@
 {% extends "base.html" %}
-{% block title %}Home — MovieCore{% endblock %}
+{% block title %}🎬Home — MovieCore{% endblock %}
 {% block content %}
-    <div class="text-center mb-5">
-      <h1 class="display-4 fw-bold">🎬 MovieCore</h1>
-      <p class="lead">Каталог найкращих фільмів. Досліджуй. Оцінюй. Дивись.</p>
-    </div>
-    <hr class="my-4">
-    <h2 class="mb-4 text-primary">🔥 Топ-3 фільми за рейтингом</h2>
-    <p>All contents:</p>
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">🎬 MovieCore</h1>
+    <p class="lead">Каталог найкращих фільмів. Досліджуй. Оцінюй. Дивись.</p>
+  </div>
+
+  <hr class="my-5">
+  <div class="card-footer d-flex justify-content-between align-items-center">
     <ul>
-        <li><strong>Actors:</strong> {{ num_actors }}</li>
-        <li><strong>Director:</strong> {{ num_directors }}</li>
-        <li><strong>Movie:</strong> {{ num_movies }}</li>
-        <li><strong>Genre:</strong> {{ num_genres }}</li>
+      <li><strong>Actors:</strong> {{ num_actors }}</li>
+      <li><strong>Director:</strong> {{ num_directors }}</li>
+      <li><strong>Movie:</strong> {{ num_movies }}</li>
+      <li><strong>Genre:</strong> {{ num_genres }}</li>
+      <li>You have visited this page: {{ num_visits }} time{{ num_visits|pluralize }}.</li>
     </ul>
 
-    <p>You have visited this page
-        {{ num_visits }} time{{ num_visits|pluralize }}.
-    </p>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for movie in top_movies %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+
+
+
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">{{ movie.description|truncatewords:20 }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <small class="text-muted">⭐ {{ movie.rating }}</small>
+{#          <a href="{% url 'catalog:movie_detail' movie.id %}" class="btn btn-outline-primary btn-sm">Детальніше</a>#}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+  <hr class="my-5">
+
+  <h2 class="mb-4">🔥 Топ-3 фільми за рейтингом</h2>
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Назва</th>
+      <th>Рейтинг</th>
+      <th>Режисер</th>
+      <th>Дата виходу</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in top_movies %}
+    <tr>
+      <td>{{ movie.title }}</td>
+      <td>⭐️ {{ movie.rating }}</td>
+      <td>{{ movie.director.first_name }} {{ movie.director.last_name }}</td>
+      <td>{{ movie.release_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr class="my-5">
+
+<h2 class="mb-4">🎬 Топ-3 найактивніших режисери</h2>
+<table class="table table-bordered table-sm">
+  <thead class="table-dark">
+    <tr>
+      <th>Імʼя</th>
+      <th>Кількість фільмів</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for director in top_directors %}
+    <tr>
+      <td>{{ director.first_name }} {{ director.last_name }}</td>
+      <td>{{ director.movie_count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
-
-
-{#<div class="row row-cols-1 row-cols-md-3 g-4">#}
-{#  {% for movie in top_movies %}#}
-{#  <div class="col">#}
-{#    <div class="card h-100 shadow-sm">#}
-{#      {% if movie.poster %}#}
-{#        <img src="{{ movie.poster.url }}" class="card-img-top" alt="{{ movie.title }}">#}
-{#      {% else %}#}
-{#        <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No poster">#}
-{#      {% endif %}#}
-{#      <div class="card-body">#}
-{#        <h5 class="card-title">{{ movie.title }}</h5>#}
-{#        <p class="card-text">{{ movie.description|truncatewords:20 }}</p>#}
-{#      </div>#}
-{#      <div class="card-footer d-flex justify-content-between align-items-center">#}
-{#        <small class="text-muted">⭐ {{ movie.rating }}</small>#}
-{#        <a href="{% url 'movie_detail' movie.id %}" class="btn btn-outline-primary btn-sm">Детальніше</a>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#  {% endfor %}#}
-{#</div>#}
-{##}
-{#<hr class="my-5">#}
-{##}
-{#<div class="text-center">#}
-{#  <a href="{% url 'movie_list' %}" class="btn btn-lg btn-primary">Переглянути всі фільми</a>#}
-{#</div>#}
-{##}
-{#{% endblock %}#}

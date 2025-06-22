@@ -18,6 +18,9 @@ class Director(AbstractUser):
     class Meta:
         ordering = ["username"]
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.username})"
+
 
 class Actor(models.Model):
     first_name = models.CharField(max_length=100)

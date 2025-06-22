@@ -1,10 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Actors list — MovieCore{% endblock %}
+{% block title %}🎬Actors list — MovieCore{% endblock %}
 
 {% block content %}
 <h2>Actors list</h2>
 
+    {% if actor_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last Name</th>
+        <th>Count</th>
+      </tr>
+    {% for actor in actor_list %}
+      <tr>
+        <td>{{ actor.id }}</td>
+        <td>{{ actor.first_name }}</td>
+        <td>{{ actor.last_name }}</td>
+        <td>{{ actor.movie_count }}</td>
+      </tr>
+    {% endfor %}
 
+    </table>
+    {% else %}
+      <p>No movie</p>
+    {% endif %}
 
 {#{% include "includes/pagination.html" %}#}
 {% endblock %}
