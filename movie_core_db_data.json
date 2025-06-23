@@ -1,0 +1,894 @@
+[
+  {
+    "model": "catalog.director",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$nRVw3YWfKMRm8zFMss0jpx$9P9j6yHPyBdGWh/U7IfUwk9LbpKnlB2jv3gDIy/c/sc=",
+      "last_login": "2025-06-22 21:31:23",
+      "is_superuser": 1,
+      "username": "admin.user",
+      "first_name": "Guy",
+      "last_name": "Ritchie",
+      "email": "Guy@test.com",
+      "is_staff": 1,
+      "is_active": 1,
+      "date_joined": "2024-06-22 21:31:09",
+      "license_card": "GR000079"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$2Ghf17Gj9JEYGDGU63HUbd$ZGtsHu77j7hDXKJfZg8ZEMfXsi7NWOO7+EtyFUCkGpA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "TarantinO",
+      "first_name": "Quentin",
+      "last_name": "Tarantino",
+      "email": "taran@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-06-22 21:35:51",
+      "license_card": "QT190025"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "ChNolan",
+      "first_name": "Christopher",
+      "last_name": "Nolan",
+      "email": "nolan@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-06-22 21:42:11",
+      "license_card": "CN007700"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "JCameron",
+      "first_name": "James",
+      "last_name": "Cameron",
+      "email": "cameron@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-01 21:42:11",
+      "license_card": "JC123456"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "LanaW",
+      "first_name": "Lana",
+      "last_name": "Wachowski",
+      "email": "lana@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-02 21:42:11",
+      "license_card": "LW454566"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "LillyW",
+      "first_name": "Lilly",
+      "last_name": "Wachowski",
+      "email": "lilly@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-03 21:42:11",
+      "license_card": "LW454577"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "ChStahelski",
+      "first_name": "Chad",
+      "last_name": "Stahelski",
+      "email": "chad@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-04 21:42:11",
+      "license_card": "CS456234"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "RScott",
+      "first_name": "Ridley",
+      "last_name": "Scott",
+      "email": "scott@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-05 21:42:11",
+      "license_card": "RS778899"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$wUkUe13jvr6dJR1N32LE8K$TQMf1zHQMHe74k+mcJyH3C1cNPJFYjpoUjpkufiKDKA=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "Finch",
+      "first_name": "David",
+      "last_name": "Fincher",
+      "email": "david@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-06 21:42:11",
+      "license_card": "DF765432"
+    }
+  },
+  {
+    "model": "catalog.director",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$o5Iy8s5fxMc0JOazdMrQxP$73Nb0z1nkJZpwwhRBxgsVuecbcN6L2CjG9ruClkaT4o=",
+      "last_login": null,
+      "is_superuser": 0,
+      "username": "user",
+      "first_name": "User",
+      "last_name": "Test",
+      "email": "user@test.com",
+      "is_staff": 0,
+      "is_active": 1,
+      "date_joined": "2024-07-07 21:42:11",
+      "license_card": "US000001"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 1,
+    "fields": {
+      "first_name": "Leonardo",
+      "last_name": "DiCaprio"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 2,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Hardy"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 3,
+    "fields": {
+      "first_name": "Cillian",
+      "last_name": "Murphy"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 4,
+    "fields": {
+      "first_name": "Uma",
+      "last_name": "Thurman"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 5,
+    "fields": {
+      "first_name": "Christian",
+      "last_name": "Bale"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 6,
+    "fields": {
+      "first_name": "Heath",
+      "last_name": "Ledger"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 7,
+    "fields": {
+      "first_name": "Samuel L.",
+      "last_name": "Jackson"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 8,
+    "fields": {
+      "first_name": "Bruce",
+      "last_name": "Willis"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 9,
+    "fields": {
+      "first_name": "Jamie",
+      "last_name": "Foxx"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 10,
+    "fields": {
+      "first_name": "Matthew",
+      "last_name": "McConaughey"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 11,
+    "fields": {
+      "first_name": "McConaughey",
+      "last_name": "Waltz"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 12,
+    "fields": {
+      "first_name": "Anne",
+      "last_name": "Hathaway"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 13,
+    "fields": {
+      "first_name": "Michael",
+      "last_name": "Caine"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 14,
+    "fields": {
+      "first_name": "Keanu",
+      "last_name": "Reeves"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 15,
+    "fields": {
+      "first_name": "Ian",
+      "last_name": "McShane"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 16,
+    "fields": {
+      "first_name": "Lance",
+      "last_name": "Lance"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 17,
+    "fields": {
+      "first_name": "Laurence",
+      "last_name": "Fishburne"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 18,
+    "fields": {
+      "first_name": "Carrie-Anne",
+      "last_name": "Moss"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 19,
+    "fields": {
+      "first_name": "Kate",
+      "last_name": "Winslet"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 20,
+    "fields": {
+      "first_name": "Edward",
+      "last_name": "Norton"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 21,
+    "fields": {
+      "first_name": "Brad",
+      "last_name": "Pitt"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 22,
+    "fields": {
+      "first_name": "Helena",
+      "last_name": "Bonham"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 23,
+    "fields": {
+      "first_name": "Russell",
+      "last_name": "Crowe"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 24,
+    "fields": {
+      "first_name": "Joaquin",
+      "last_name": "Phoenix"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 25,
+    "fields": {
+      "first_name": "Connie",
+      "last_name": "Nielsen"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 26,
+    "fields": {
+      "first_name": "Charlie",
+      "last_name": "Hunnam"
+    }
+  },
+  {
+    "model": "catalog.actor",
+    "pk": 27,
+    "fields": {
+      "first_name": "Hugh",
+      "last_name": "Grant"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Sci-Fi"
+  }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Action"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 3,
+    "fields": {
+      "name": "Thriller"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 4,
+    "fields": {
+      "name": "Crime"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 5,
+    "fields": {
+      "name": "Drama"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 6,
+    "fields": {
+      "name": "Adveture"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 7,
+    "fields": {
+      "name": "History"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 8,
+    "fields": {
+      "name": "Romance"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 9,
+    "fields": {
+      "name": "Western"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 10,
+    "fields": {
+      "name": "Psychological"
+    }
+  },
+  {
+    "model": "catalog.genre",
+    "pk": 11,
+    "fields": {
+      "name": "Comedy"
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 1,
+    "fields": {
+      "title": "Inception",
+      "description": "A thief who enters the dreams of others must pull off one last job: planting an idea instead of stealing one.",
+      "release_date": "2010-07-16",
+      "rating": 8.8,
+      "genres": [1, 2, 3],
+      "directors": [3]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 2,
+    "fields": {
+      "title": "The Dark Knight",
+      "description": "Batman faces his greatest psychological and physical test yet when the Joker wreaks chaos on Gotham.",
+      "release_date": "2008-07-18",
+      "rating": 9.0,
+      "genres": [2, 4, 5],
+      "directors": [3]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 3,
+    "fields": {
+      "title": "Pulp Fiction",
+      "description": "Intertwined crime stories unfold in Quentin Tarantino’s stylish, nonlinear masterpiece.",
+      "release_date": "1994-10-14",
+      "rating": 8.9,
+      "genres": [4, 5],
+      "directors": [2]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 4,
+    "fields": {
+      "title": "Titanic",
+      "description": "A young couple from different worlds fall in love aboard the ill-fated RMS Titanic.",
+      "release_date": "1997-12-19",
+      "rating": 7.9,
+      "genres": [5, 8],
+      "directors": [4]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 5,
+    "fields": {
+      "title": "Django Unchained",
+      "description": "A freed slave partners with a bounty hunter to rescue his wife from a ruthless plantation owner.",
+      "release_date": "2012-12-25",
+      "rating": 8.4,
+      "genres": [5, 9],
+      "directors": [2]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 6,
+    "fields": {
+      "title": "Interstellar",
+      "description": "A team of explorers travels through a wormhole in space to save humanity’s future.",
+      "release_date": "2014-11-07",
+      "rating": 8.6,
+      "genres": [1, 5, 6],
+      "directors": [3]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 7,
+    "fields": {
+      "title": "The Matrix",
+      "description": "A hacker discovers reality is a simulation and joins a rebellion against machines that control it.",
+      "release_date": "1999-03-31",
+      "rating": 8.7,
+      "genres": [1, 2],
+      "directors": [5, 6]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 8,
+    "fields": {
+      "title": "John Wick",
+      "description": "An ex-hitman returns to the underworld to seek vengeance for his murdered dog.",
+      "release_date": "2014-10-24",
+      "rating": 7.4,
+      "genres": [2, 3],
+      "directors": [7]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 9,
+    "fields": {
+      "title": "Fight Club",
+      "description": "An insomniac office worker and a soapmaker form an underground fight club that evolves into something much more.",
+      "release_date": "1999-10-15",
+      "rating": 8.8,
+      "genres": [3, 5, 10],
+      "directors": [9]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 10,
+    "fields": {
+      "title": "Gladiator",
+      "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family.",
+      "release_date": "2000-05-05",
+      "rating": 8.5,
+      "genres": [2, 5, 7],
+      "directors": [8]
+    }
+  },
+  {
+    "model": "catalog.movie",
+    "pk": 11,
+    "fields": {
+      "title": "The Gentlemen",
+      "description": "An American expat tries to sell off his highly profitable marijuana empire in London.",
+      "release_date": "2019-12-03",
+      "rating": 7.8,
+      "genres": [2, 4, 11],
+      "directors": [1]
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 1,
+    "fields": {
+      "character_name": "Dom Cobb",
+      "actor": 1,
+      "movie": 1
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 2,
+    "fields": {
+      "character_name": "Eams",
+      "actor": 2,
+      "movie": 1
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 3,
+    "fields": {
+      "character_name": "Robert Ficher",
+      "actor": 3,
+      "movie": 1
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 4,
+    "fields": {
+      "character_name": "Bruce Wayne",
+      "actor": 5,
+      "movie": 2
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 5,
+    "fields": {
+      "character_name": "Joker",
+      "actor": 6,
+      "movie": 2
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 6,
+    "fields": {
+      "character_name": "Scarecrow",
+      "actor": 3,
+      "movie": 2
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 7,
+    "fields": {
+      "character_name": "Jack Dawson",
+      "actor": 1,
+      "movie": 4
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 8,
+    "fields": {
+      "character_name": "Rose DeWitt Bukater",
+      "actor": 19,
+      "movie": 4
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 9,
+    "fields": {
+      "character_name": "Jules Winnfield",
+      "actor": 7,
+      "movie": 3
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 10,
+    "fields": {
+      "character_name": "Butch Coolidge",
+      "actor": 8,
+      "movie": 3
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 11,
+    "fields": {
+      "character_name": "Mia Wallace",
+      "actor": 4,
+      "movie": 3
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 12,
+    "fields": {
+      "character_name": "Django Freeman",
+      "actor": 9,
+      "movie": 5
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 13,
+    "fields": {
+      "character_name": "Dr. King Schultz",
+      "actor": 11,
+      "movie": 5
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 14,
+    "fields": {
+      "character_name": "Calvin Candie",
+      "actor": 1,
+      "movie": 5
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 15,
+    "fields": {
+      "character_name": "Stephen",
+      "actor": 7,
+      "movie": 5
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 16,
+    "fields": {
+      "character_name": "Cooper",
+      "actor": 10,
+      "movie": 6
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 17,
+    "fields": {
+      "character_name": "Brand",
+      "actor": 12,
+      "movie": 6
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 18,
+    "fields": {
+      "character_name": "Professor Brand",
+      "actor": 13,
+      "movie": 6
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 19,
+    "fields": {
+      "character_name": "Neo",
+      "actor": 14,
+      "movie": 7
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 20,
+    "fields": {
+      "character_name": "Morpheus",
+      "actor": 17,
+      "movie": 7
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 21,
+    "fields": {
+      "character_name": "Trinity",
+      "actor": 18,
+      "movie": 7
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 22,
+    "fields": {
+      "character_name": "John Wick",
+      "actor": 14,
+      "movie": 8
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 23,
+    "fields": {
+      "character_name": "Winston",
+      "actor": 15,
+      "movie": 8
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 24,
+    "fields": {
+      "character_name": "Charon",
+      "actor": 16,
+      "movie": 8
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 25,
+    "fields": {
+      "character_name": "The Narrator",
+      "actor": 20,
+      "movie": 9
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 26,
+    "fields": {
+      "character_name": "Tyler Durden",
+      "actor": 21,
+      "movie": 9
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 27,
+    "fields": {
+      "character_name": "Marla Singer",
+      "actor": 22,
+      "movie": 9
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 28,
+    "fields": {
+      "character_name": "Maximus",
+      "actor": 23,
+      "movie": 10
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 29,
+    "fields": {
+      "character_name": "Commodus",
+      "actor": 24,
+      "movie": 10
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 30,
+    "fields": {
+      "character_name": "Lucilla",
+      "actor": 25,
+      "movie": 10
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 31,
+    "fields": {
+      "character_name": "Mickey Pearson",
+      "actor": 10,
+      "movie": 11
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 32,
+    "fields": {
+      "character_name": "Ray",
+      "actor": 26,
+      "movie": 11
+    }
+  },
+  {
+    "model": "catalog.role",
+    "pk": 33,
+    "fields": {
+      "character_name": "Fletcher",
+      "actor": 27,
+      "movie": 11
+    }
+  }
+]
