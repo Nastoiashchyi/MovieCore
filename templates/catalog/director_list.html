@@ -13,6 +13,7 @@
         <th>First name</th>
         <th>Last name</th>
         <th>Username</th>
+        <th>License card number</th>
         <th>Movie</th>
       </tr>
       </thead>
@@ -22,14 +23,15 @@
         <td>{{ director.id }}</td>
         <td>{{ director.first_name }}</td>
         <td>{{ director.last_name }}</td>
-        <td>{{ director.username }}</td>
+        <td>{{ director.username }} {% if user == director %} (Me){% endif %}</td>
+        <td>{{ director.license_card }}</td>
         <td>{{ director.movie_count }}</td>
       </tr>
     {% endfor %}
 
     </table>
   {% else %}
-    <p>No movie</p>
+    <p>No directors</p>
   {% endif %}
 
 {#{% include "includes/pagination.html" %}#}

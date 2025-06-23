@@ -13,8 +13,6 @@ def index(request):
     num_actors = Actor.objects.count()
     num_genres = Genre.objects.count()
     top_movies = Movie.objects.order_by("-rating")[:3]
-    top_directors = Director.objects.annotate(movie_count=Count("movie")).order_by("-movie_count", "first_name")[:3]
-
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
     context = {
@@ -24,9 +22,7 @@ def index(request):
         "num_actors": num_actors,
         "num_visits": num_visits + 1,
         "top_movies": top_movies,
-        "top_directors": top_directors,
     }
-
     return render(request, "catalog/index.html", context=context)
 
 
@@ -36,7 +32,9 @@ class GenreListView(generic.ListView):
     context_object_name = "genre_list"
 
     def get_queryset(self):
-        return Genre.objects.annotate(movie_count=Count("movie")).order_by("-movie_count")
+        return Genre.objects.annotate(
+            movie_count=Count("movie")
+        ).order_by("-movie_count")
 
 
 class DirectorListView(generic.ListView):
@@ -45,7 +43,9 @@ class DirectorListView(generic.ListView):
     context_object_name = "director_list"
 
     def get_queryset(self):
-        return Director.objects.annotate(movie_count=Count("movie")).order_by("first_name", "last_name")
+        return Director.objects.annotate(
+            movie_count=Count("movie")
+        ).order_by("first_name", "last_name")
 
 
 class ActorListView(generic.ListView):
@@ -54,7 +54,9 @@ class ActorListView(generic.ListView):
     context_object_name = "actor_list"
 
     def get_queryset(self):
-        return Actor.objects.annotate(movie_count=Count("role__movie", distinct=True)).order_by("first_name", "last_name")
+        return Actor.objects.annotate(
+            movie_count=Count("role__movie", distinct=True)
+        ).order_by("first_name", "last_name")
 
 
 class MovieListView(generic.ListView):

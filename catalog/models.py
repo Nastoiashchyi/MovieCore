@@ -14,6 +14,7 @@ class Genre(models.Model):
 
 
 class Director(AbstractUser):
+    license_card = models.CharField(max_length=255, unique=True)
 
     class Meta:
         ordering = ["username"]
@@ -39,8 +40,8 @@ class Movie(models.Model):
     release_date = models.DateField()
     rating = models.FloatField()
     genres = models.ManyToManyField(Genre)
-    director = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    actors = models.ManyToManyField(Actor, through="Role")
+    directors = models.ManyToManyField(Director, blank=True, related_name="movies")
+    actors = models.ManyToManyField(Actor, through="Role", related_name="movies")
 
     class Meta:
         ordering = ["title"]
