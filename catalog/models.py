@@ -40,8 +40,8 @@ class Movie(models.Model):
     release_date = models.DateField()
     rating = models.FloatField()
     genres = models.ManyToManyField(Genre)
-    directors = models.ManyToManyField(Director, blank=True, related_name="movies")
-    actors = models.ManyToManyField(Actor, through="Role", related_name="movies")
+    directors = models.ManyToManyField(Director, blank=True, related_name="movie")
+    actors = models.ManyToManyField(Actor, through="Role", related_name="movie")
 
     class Meta:
         ordering = ["title"]
