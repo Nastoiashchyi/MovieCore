@@ -4,6 +4,8 @@
 {% block content %}
 
   <h2>{{ movie.title }}</h2>
+
+
   <hr class="my-5">
   <p><strong>Release date:</strong> {{ movie.release_date|date:"d M Y" }}</p>
   <p><strong>Rating:</strong> ⭐ {{ movie.rating }}</p>
@@ -57,5 +59,11 @@
     <p class="text-muted">This film has no cast listed yet.</p>
   {% endif %}
 
-
+  <hr class="my-5">
+  <a href="{% url 'catalog:movie_delete' pk=movie.pk %}" class="btn btn-outline-danger float-end">
+  🗑 Delete
+  </a>
+  <a href="{% url 'catalog:movie_update' pk=movie.pk %}" class="btn btn-outline-primary">
+  ✏️ Edit the movie
+  </a>
 {% endblock %}

@@ -3,12 +3,6 @@
 
 {% block content %}
   <h2>{{ director.first_name }} {{ director.last_name }}</h2>
-  {% if user.is_superuser or user.pk == director.pk %}
-    <a href="{% url 'catalog:director_update' pk=director.pk %}" class="btn btn-outline-primary float-end">
-      ✏️ Edit profile
-    </a>
-  {% endif %}
-
 
   <hr class="my-5">
   <p><strong>License:</strong> {{ director.license_card }}</p>
@@ -30,4 +24,15 @@
   {% else %}
     <p class="text-muted">This director has no films in the database yet.</p>
   {% endif %}
+  {% if user.is_superuser or user.pk == director.pk %}
+
+  <hr class="my-5">
+  <a href="{% url 'catalog:director_delete' pk=director.pk %}" class="btn btn-outline-danger float-end">
+  🗑 Delete
+  </a>
+  <a href="{% url 'catalog:director_update' pk=director.pk %}" class="btn btn-outline-primary">
+  ✏️ Edit profile
+  </a>
+  {% endif %}
+
 {% endblock %}

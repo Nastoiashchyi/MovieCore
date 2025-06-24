@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
 
-from catalog.models import Movie, Actor, Role
+from catalog.models import Movie, Actor, Role, Genre
 
 
 class DirectorSignUpForm(UserCreationForm):
@@ -53,17 +53,33 @@ class MovieCreateForm(forms.ModelForm):
         }
 
 
-class ActorCreateForm(forms.ModelForm):
-    class Meta:
-        model = Actor
-        fields = ["first_name", "last_name"]
-
 RoleInlineFormSet = inlineformset_factory(
     Movie,
     Role,
     fields=["character_name", "actor"],
-    extra=2,
+    extra=4,
     can_delete=True
 )
+
+
+class ActorCreateForm(forms.ModelForm):
+    class Meta:
+        model = Actor
+        fields = ["first_name", "last_name"]
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+
+class GenreCreateForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = ["name"]
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+
 
 
