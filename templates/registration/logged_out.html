@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="text-center">
+    <h3 class="mb-3">👋 You have successfully exit</h3>
+    <p class="mb-4">We hope you will return soon 🎬</p>
+    <a href="{% url 'login' %}" class="btn btn-outline-secondary">Sign in again</a>
+  </div>
+</div>
+{% endblock %}
