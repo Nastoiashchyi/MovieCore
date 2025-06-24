@@ -4,7 +4,7 @@
   {% load static %}
   <div class="text-center mb-5">
     <h1 class="display-4 fw-bold">🎬 MovieCore</h1>
-    <p class="lead">Catalog of the best films. Explore. Rate. Marvel.</p>
+    <p class="lead">Welcome! Choose movies, browse actors, directors, and genres — all in one place.</p>
   </div>
 
   <div class="row text-center mb-4">
@@ -58,7 +58,7 @@
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
           <small class="text-muted">⭐ {{ movie.rating }} IMDb</small>
-          <a href="{% url 'catalog:movie_detail' pk=movie.id%}" class="btn btn-dark">Детальніше</a>
+          <a href="{% url 'catalog:movie_detail' pk=movie.id%}" class="btn btn-dark">More details</a>
         </div>
       </div>
     </div>

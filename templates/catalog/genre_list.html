@@ -2,32 +2,38 @@
 {% block title %}Genre list|MovieCore{% endblock %}
 
 {% block content %}
-<h2>Genre list</h2>
+<h2 class="mb-4">Genre list</h2>
+  <form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ search_query }}" class="form-control" placeholder="Genre search...">
+    <button type="submit" class="btn btn-outline-secondary">🔍</button>
+  </div>
+  </form>
+  <hr class="my-5">
+  {% if genre_list %}
+  <table class="table table-bordered table-sm">
+    <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Count</th>
+    </tr>
+    </thead>
+  {% for genre in genre_list %}
+    <tr>
+      <td>
+        <a href="{% url 'catalog:genre_detail' genre.pk %}">
+        {{ genre.name }}
+        </a>
+      </td>
+      <td>{{ genre.movie_count }}</td>
 
-    {% if genre_list %}
-    <table class="table table-bordered table-sm">
-      <thead class="table-dark">
-      <tr>
-        <th>Name</th>
-        <th>Count</th>
-      </tr>
-      </thead>
-    {% for genre in genre_list %}
-      <tr>
-        <td>
-          <a href="{% url 'catalog:genre_detail' genre.pk %}">
-          {{ genre.name }}
-          </a>
-        </td>
-        <td>{{ genre.movie_count }}</td>
+    </tr>
+  {% endfor %}
 
-      </tr>
-    {% endfor %}
-
-    </table>
-    {% else %}
-      <p>No genres</p>
-    {% endif %}
+  </table>
+  {% else %}
+    <p>No genres</p>
+  {% endif %}
 
 {% include "includes/pagination.html" %}
 {% endblock %}

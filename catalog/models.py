@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class Genre(models.Model):
@@ -14,12 +15,15 @@ class Genre(models.Model):
 
 
 class Director(AbstractUser):
-    license_card = models.CharField(max_length=255, unique=True)
+    license_card = models.CharField(max_length=8, unique=True, blank=True)
 
     class Meta:
         ordering = ["username"]
         verbose_name_plural = "directors"
         verbose_name = "director"
+
+    def get_absolute_url(self):
+        return reverse("catalog:director_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"

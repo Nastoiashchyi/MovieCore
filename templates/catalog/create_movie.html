@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}🎬 New Movie|MovieCore{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">🎬 Add New Movie</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <h5 class="mt-4">🎭 Roles & Actors</h5>
+  {{ formset.management_form }}
+  {% for form in formset %}
+    <div class="border p-3 mb-2 rounded">
+      {{ form.as_p }}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">Save Movie</button>
+</form>
+{% endblock %}

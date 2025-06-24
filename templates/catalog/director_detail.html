@@ -3,6 +3,13 @@
 
 {% block content %}
   <h2>{{ director.first_name }} {{ director.last_name }}</h2>
+  {% if user.is_superuser or user.pk == director.pk %}
+    <a href="{% url 'catalog:director_update' pk=director.pk %}" class="btn btn-outline-primary float-end">
+      ✏️ Edit profile
+    </a>
+  {% endif %}
+
+
   <hr class="my-5">
   <p><strong>License:</strong> {{ director.license_card }}</p>
   <p><strong>Email:</strong> {{ director.email }}</p>

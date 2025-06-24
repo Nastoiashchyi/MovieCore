@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Registration|MovieCore{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center align-items-center">
+
+    <div class="col-md-5 mb-4 mb-md-0 text-center text-md-start">
+      <h2 class="display-6">🎬 Register as a Director</h2>
+      <p class="text-muted">Create your MovieCore director profile and start adding your films to the spotlight.</p>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <strong>😕 Errors when filling out the form:</strong><br>
+              {{ form.non_field_errors }}
+            </div>
+          {% endif %}
+
+          <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="row mb-3 align-items-center">
+                <label for="{{ field.id_for_label }}" class="col-sm-4 col-form-label text-sm-end">
+                  {{ field.label }}
+                </label>
+                <div class="col-sm-8">
+                  {{ field }}
+                  {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|striptags }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -2,35 +2,45 @@
 {% block title %}Movie list|MovieCore{% endblock %}
 
 {% block content %}
-<h2>Movie list</h2>
+<h2 class="mb-4">Movie list</h2>
+  <a href="{% url 'catalog:movie_create' %}" class="btn btn-success btn-lg d-inline-flex align-items-center gap-2 shadow-sm">
+  <i class="bi bi-plus-circle-fill"></i> Create a movie
+  </a>
 
 
-    {% if movie_list %}
-    <table class="table table-bordered table-sm">
-      <thead class="table-dark">
+  <form method="get" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search by name..." value="{{ search_query }}" class="form-control">
+      <button type="submit" class="btn btn-outline-primary">🔍</button>
+    </div>
+  </form>
+  <hr class="my-5">
+  {% if movie_list %}
+  <table class="table table-bordered table-sm">
+    <thead class="table-dark">
 
-        <tr>
-          <th>Title</th>
-          <th>Release date</th>
-          <th>Rating</th>
-        </tr>
-      </thead>
-
-    {% for movie in movie_list %}
       <tr>
-      <td><a href="{% url 'catalog:movie_detail' movie.pk %}">
-      {{ movie.title }}
-      </a>
-      </td>
-        <td>{{ movie.release_date }}</td>
-        <td>{{ movie.rating }}</td>
+        <th>Title</th>
+        <th>Release date</th>
+        <th>Rating</th>
       </tr>
-    {% endfor %}
+    </thead>
 
-    </table>
-    {% else %}
-      <p>No movies</p>
-    {% endif %}
+  {% for movie in movie_list %}
+    <tr>
+    <td><a href="{% url 'catalog:movie_detail' movie.pk %}">
+    {{ movie.title }}
+    </a>
+    </td>
+      <td>{{ movie.release_date }}</td>
+      <td>{{ movie.rating }}</td>
+    </tr>
+  {% endfor %}
+
+  </table>
+  {% else %}
+    <p>No movies</p>
+  {% endif %}
 
 {% include "includes/pagination.html" %}
 {% endblock %}

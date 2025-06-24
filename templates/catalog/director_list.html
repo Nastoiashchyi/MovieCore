@@ -4,7 +4,13 @@
 {% block content %}
 
 <h2 class="mb-4">Director list</h2>
-
+  <form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ search_query }}" class="form-control" placeholder="Searching for a director...">
+    <button type="submit" class="btn btn-outline-secondary">🔍</button>
+  </div>
+  </form>
+  <hr class="my-5">
   {% if director_list %}
     <table class="table table-bordered table-sm">
       <thead class="table-dark">
