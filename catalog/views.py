@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.shortcuts import render
 from django.views import generic
@@ -26,7 +27,7 @@ def index(request):
     return render(request, "catalog/index.html", context=context)
 
 
-class GenreListView(generic.ListView):
+class GenreListView(LoginRequiredMixin, generic.ListView):
     model = Genre
     template_name = "catalog/genre_list.html"
     context_object_name = "genre_list"
@@ -37,7 +38,7 @@ class GenreListView(generic.ListView):
         ).order_by("-movie_count")
 
 
-class DirectorListView(generic.ListView):
+class DirectorListView(LoginRequiredMixin, generic.ListView):
     model = Director
     template_name = "catalog/director_list.html"
     context_object_name = "director_list"
@@ -48,7 +49,7 @@ class DirectorListView(generic.ListView):
         ).order_by("first_name", "last_name")
 
 
-class ActorListView(generic.ListView):
+class ActorListView(LoginRequiredMixin, generic.ListView):
     model = Actor
     template_name = "catalog/actor_list.html"
     context_object_name = "actor_list"
@@ -59,7 +60,7 @@ class ActorListView(generic.ListView):
         ).order_by("first_name", "last_name")
 
 
-class MovieListView(generic.ListView):
+class MovieListView(LoginRequiredMixin, generic.ListView):
     model = Movie
     template_name = "catalog/movie_list.html"
     context_object_name = "movie_list"

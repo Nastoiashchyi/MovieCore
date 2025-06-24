@@ -1,24 +1,56 @@
 {% extends "base.html" %}
-{% block title %}🎬Home — MovieCore{% endblock %}
+{% block title %}Home|MovieCore{% endblock %}
 {% block content %}
+  {% load static %}
   <div class="text-center mb-5">
     <h1 class="display-4 fw-bold">🎬 MovieCore</h1>
     <p class="lead">Catalog of the best films. Explore. Rate. Marvel.</p>
   </div>
 
-  <hr class="my-5">
-  <div class="card-footer d-flex justify-content-between align-items-center">
-    <ul>
-      <li><strong>Actors:</strong> {{ num_actors }}</li>
-      <li><strong>Director:</strong> {{ num_directors }}</li>
-      <li><strong>Movie:</strong> {{ num_movies }}</li>
-      <li><strong>Genre:</strong> {{ num_genres }}</li>
-    </ul>
+  <div class="row text-center mb-4">
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">🎭 Actors</h5>
+          <span id="num-actors" class="counter card-text fs-4 fw-bold" data-target="{{ num_actors }}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">🎬 Directors</h5>
+          <span id="num-directors" class="counter card-text fs-4 fw-bold" data-target="{{ num_directors }}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">📽️ Movies</h5>
+          <span id="num-movies" class="counter card-text fs-4 fw-bold" data-target="{{ num_movies }}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">🎞️ Genres</h5>
+          <span id="num-genres" class="counter card-text fs-4 fw-bold" data-target="{{ num_genres }}"></span>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <hr class="my-5">
+
+  <h2 class="mb-4">🔥 TOP - 3 🔥</h2>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for movie in top_movies %}
     <div class="col">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-50 shadow-sm">
+
+        <img src="{% static 'images/no_poster.png' %}" alt="Movie poster" class="img-fluid rounded shadow">
 
         <div class="card-body">
           <h5 class="card-title">{{ movie.title }}</h5>
@@ -34,30 +66,30 @@
   </div>
 
 <hr class="my-5">
-
-<h2 class="mb-4">🔥 TOP -3 Movies</h2>
-<table class="table table-bordered table-sm">
-  <thead class="table-dark">
-    <tr>
-      <th>Назва</th>
-      <th>Рейтинг</th>
-      <th>Режисер</th>
-      <th>Дата виходу</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for movie in top_movies %}
-    <tr>
-      <td>{{ movie.title }}</td>
-      <td>⭐️ {{ movie.rating }} IMDb</td>
-      <td>{{ movie.director.first_name }} {{ movie.director.last_name }}</td>
-      <td>{{ movie.release_date }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<hr class="my-5">
   <p class="text-center">You have visited this page: {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    counters.forEach(el => {
+      const target = +el.dataset.target;
+      let count = 0;
+      const speed = 150;
+
+      const update = () => {
+        if (count < target) {
+          count++;
+          el.textContent = count;
+          setTimeout(update, speed);
+        } else {
+          el.textContent = target;
+        }
+      };
+
+      update();
+    });
+  });
+</script>
+
 
 {% endblock %}

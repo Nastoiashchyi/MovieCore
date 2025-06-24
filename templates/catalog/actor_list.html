@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}🎬Actors list — MovieCore{% endblock %}
+{% block title %}Actors list|MovieCore{% endblock %}
 
 {% block content %}
 <h2>Actors list</h2>
@@ -8,7 +8,6 @@
     <table class="table table-bordered table-sm">
       <thead class="table-dark">
       <tr>
-        <th>ID</th>
         <th>First name</th>
         <th>Last Name</th>
         <th>Count</th>
@@ -16,7 +15,6 @@
       </thead>
     {% for actor in actor_list %}
       <tr>
-        <td>{{ actor.id }}</td>
         <td>{{ actor.first_name }}</td>
         <td>{{ actor.last_name }}</td>
         <td>{{ actor.movie_count }}</td>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}🎬Movie list — MovieCore{% endblock %}
+{% block title %}Movie list|MovieCore{% endblock %}
 
 {% block content %}
 <h2>Movie list</h2>
@@ -10,7 +10,6 @@
       <thead class="table-dark">
 
         <tr>
-          <th>ID</th>
           <th>Title</th>
           <th>Release date</th>
           <th>Rating</th>
@@ -20,11 +19,18 @@
 
     {% for movie in movie_list %}
       <tr>
-        <td>{{ movie.id }}</td>
         <td>{{ movie.title }}</td>
         <td>{{ movie.release_date }}</td>
         <td>{{ movie.rating }}</td>
-        <td>{{ movie.director }}</td>
+        <td>
+          {% for director in movie.directors.all %}
+{#            <a href="{% url 'director_detail' pk=director.pk %}">#}
+            {{ director.first_name }} {{ director.last_name }}
+            </a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+            No data
+          {% endfor %}
+        </td>
       </tr>
     {% endfor %}
 

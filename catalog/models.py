@@ -8,6 +8,8 @@ class Genre(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name_plural = "genres"
+        verbose_name = "genre"
 
     def __str__(self):
         return self.name
@@ -18,6 +20,8 @@ class Director(AbstractUser):
 
     class Meta:
         ordering = ["username"]
+        verbose_name_plural = "directors"
+        verbose_name = "director"
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
@@ -29,6 +33,8 @@ class Actor(models.Model):
 
     class Meta:
         ordering = ["first_name", "last_name"]
+        verbose_name_plural = "actors"
+        verbose_name = "actor"
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -45,6 +51,8 @@ class Movie(models.Model):
 
     class Meta:
         ordering = ["title"]
+        verbose_name_plural = "movies"
+        verbose_name = "movie"
 
     def __str__(self):
         return self.title

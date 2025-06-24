@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}🎬Directors list — MovieCore{% endblock %}
+{% block title %}Directors list|MovieCore{% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,6 @@
     <table class="table table-bordered table-sm">
       <thead class="table-dark">
       <tr>
-        <th>ID</th>
         <th>First name</th>
         <th>Last name</th>
         <th>Username</th>
@@ -20,7 +19,6 @@
 
     {% for director in director_list %}
       <tr>
-        <td>{{ director.id }}</td>
         <td>{{ director.first_name }}</td>
         <td>{{ director.last_name }}</td>
         <td>{{ director.username }} {% if user == director %} (Me){% endif %}</td>
