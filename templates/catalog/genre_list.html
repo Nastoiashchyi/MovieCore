@@ -14,7 +14,11 @@
       </thead>
     {% for genre in genre_list %}
       <tr>
-        <td>{{ genre.name }}</td>
+        <td>
+          <a href="{% url 'catalog:genre_detail' genre.pk %}">
+          {{ genre.name }}
+          </a>
+        </td>
         <td>{{ genre.movie_count }}</td>
 
       </tr>
@@ -25,5 +29,5 @@
       <p>No genres</p>
     {% endif %}
 
-{#{% include "includes/pagination.html" %}#}
+{% include "includes/pagination.html" %}
 {% endblock %}

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -7,7 +6,6 @@ class Genre(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        ordering = ["name"]
         verbose_name_plural = "genres"
         verbose_name = "genre"
 
@@ -30,7 +28,6 @@ class Director(AbstractUser):
 class Actor(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-
     class Meta:
         ordering = ["first_name", "last_name"]
         verbose_name_plural = "actors"
@@ -46,8 +43,8 @@ class Movie(models.Model):
     release_date = models.DateField()
     rating = models.FloatField()
     genres = models.ManyToManyField(Genre)
-    directors = models.ManyToManyField(Director, blank=True, related_name="movie")
-    actors = models.ManyToManyField(Actor, through="Role", related_name="movie")
+    directors = models.ManyToManyField(Director, blank=True)
+    actors = models.ManyToManyField(Actor, through="Role", related_name="movies")
 
     class Meta:
         ordering = ["title"]
@@ -60,8 +57,8 @@ class Movie(models.Model):
 
 class Role(models.Model):
     character_name = models.CharField(max_length=100)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="roles")
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE, related_name="roles")
 
     def __str__(self):
         return f"{self.character_name} ({self.actor}) in {self.movie}"

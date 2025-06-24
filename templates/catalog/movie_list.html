@@ -13,24 +13,17 @@
           <th>Title</th>
           <th>Release date</th>
           <th>Rating</th>
-          <th>Director</th>
         </tr>
       </thead>
 
     {% for movie in movie_list %}
       <tr>
-        <td>{{ movie.title }}</td>
+      <td><a href="{% url 'catalog:movie_detail' movie.pk %}">
+      {{ movie.title }}
+      </a>
+      </td>
         <td>{{ movie.release_date }}</td>
         <td>{{ movie.rating }}</td>
-        <td>
-          {% for director in movie.directors.all %}
-{#            <a href="{% url 'director_detail' pk=director.pk %}">#}
-            {{ director.first_name }} {{ director.last_name }}
-            </a>{% if not forloop.last %}, {% endif %}
-            {% empty %}
-            No data
-          {% endfor %}
-        </td>
       </tr>
     {% endfor %}
 
@@ -39,5 +32,5 @@
       <p>No movies</p>
     {% endif %}
 
-{#{% include "includes/pagination.html" %}#}
+{% include "includes/pagination.html" %}
 {% endblock %}

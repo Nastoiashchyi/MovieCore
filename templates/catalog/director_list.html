@@ -9,8 +9,7 @@
     <table class="table table-bordered table-sm">
       <thead class="table-dark">
       <tr>
-        <th>First name</th>
-        <th>Last name</th>
+        <th>Full name</th>
         <th>Username</th>
         <th>License card number</th>
         <th>Movie</th>
@@ -19,8 +18,11 @@
 
     {% for director in director_list %}
       <tr>
-        <td>{{ director.first_name }}</td>
-        <td>{{ director.last_name }}</td>
+        <td>
+          <a href="{% url 'catalog:director_detail' pk=director.pk %}">
+          {{ director.first_name }} {{ director.last_name }}
+          </a>
+        </td>
         <td>{{ director.username }} {% if user == director %} (Me){% endif %}</td>
         <td>{{ director.license_card }}</td>
         <td>{{ director.movie_count }}</td>
@@ -32,5 +34,5 @@
     <p>No directors</p>
   {% endif %}
 
-{#{% include "includes/pagination.html" %}#}
+{% include "includes/pagination.html" %}
 {% endblock %}

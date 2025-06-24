@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ director.get_full_name }}|MovieCore{% endblock %}
+
+{% block content %}
+  <h2>{{ director.first_name }} {{ director.last_name }}</h2>
+  <hr class="my-5">
+  <p><strong>License:</strong> {{ director.license_card }}</p>
+  <p><strong>Email:</strong> {{ director.email }}</p>
+
+  <hr class="my-5">
+  <h4>🎬 Directed films:</h4>
+  {% if movies %}
+    <ul class="list-group">
+      {% for movie in movies %}
+        <li class="list-group-item">
+          <a href="{% url 'catalog:movie_detail' movie.pk %}">
+            {{ movie.title }}
+          </a>
+          ({{ movie.release_date|date:"Y" }}) — ⭐ {{ movie.rating }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">This director has no films in the database yet.</p>
+  {% endif %}
+{% endblock %}

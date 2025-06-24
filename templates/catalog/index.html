@@ -58,7 +58,7 @@
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
           <small class="text-muted">⭐ {{ movie.rating }} IMDb</small>
-          <a href="{% url 'catalog:movie_list' %}" class="btn btn-dark">Детальніше</a>
+          <a href="{% url 'catalog:movie_detail' pk=movie.id%}" class="btn btn-dark">Детальніше</a>
         </div>
       </div>
     </div>

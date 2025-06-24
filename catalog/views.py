@@ -4,7 +4,7 @@ from django.db.models import Count
 from django.shortcuts import render
 from django.views import generic
 
-from catalog.models import Genre, Director, Movie, Actor
+from catalog.models import Genre, Director, Movie, Actor, Role
 
 
 @login_required
@@ -31,6 +31,7 @@ class GenreListView(LoginRequiredMixin, generic.ListView):
     model = Genre
     template_name = "catalog/genre_list.html"
     context_object_name = "genre_list"
+    paginate_by = 6
 
     def get_queryset(self):
         return Genre.objects.annotate(
@@ -38,10 +39,22 @@ class GenreListView(LoginRequiredMixin, generic.ListView):
         ).order_by("-movie_count")
 
 
+class GenreDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Genre
+    template_name = "catalog/genre_detail.html"
+    context_object_name = "genre"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["movies"] = Movie.objects.filter(genres=self.object)
+        return context
+
+
 class DirectorListView(LoginRequiredMixin, generic.ListView):
     model = Director
     template_name = "catalog/director_list.html"
     context_object_name = "director_list"
+    paginate_by = 6
 
     def get_queryset(self):
         return Director.objects.annotate(
@@ -49,15 +62,38 @@ class DirectorListView(LoginRequiredMixin, generic.ListView):
         ).order_by("first_name", "last_name")
 
 
+class DirectorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Director
+    template_name = "catalog/director_detail.html"
+    context_object_name = "director"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["movies"] = Movie.objects.filter(directors=self.object)
+        return context
+
+
 class ActorListView(LoginRequiredMixin, generic.ListView):
     model = Actor
     template_name = "catalog/actor_list.html"
     context_object_name = "actor_list"
+    paginate_by = 6
 
     def get_queryset(self):
         return Actor.objects.annotate(
-            movie_count=Count("role__movie", distinct=True)
+            movie_count=Count("roles__movie", distinct=True)
         ).order_by("first_name", "last_name")
+
+
+class ActorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Actor
+    template_name = "catalog/actor_detail.html"
+    context_object_name = "actor"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["roles"] = self.object.roles.select_related("movie")
+        return context
 
 
 class MovieListView(LoginRequiredMixin, generic.ListView):
@@ -65,3 +101,15 @@ class MovieListView(LoginRequiredMixin, generic.ListView):
     template_name = "catalog/movie_list.html"
     context_object_name = "movie_list"
     ordering = ["-release_date"]
+    paginate_by = 6
+
+
+class MovieDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Movie
+    template_name = "catalog/movie_detail.html"
+    context_object_name = "movie"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["roles"] = self.object.roles.select_related("actor")
+        return context
