@@ -24,8 +24,8 @@
   {% else %}
     <p class="text-muted">This director has no films in the database yet.</p>
   {% endif %}
-  {% if user.is_superuser or user.pk == director.pk %}
 
+  {% if user.is_superuser or user.pk == director.pk %}
   <hr class="my-5">
   <a href="{% url 'catalog:director_delete' pk=director.pk %}" class="btn btn-outline-danger float-end">
   🗑 Delete
