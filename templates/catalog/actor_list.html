@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Actors list|MovieCore{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Actors list</h2>
+  <a href="{% url 'catalog:actor_create' %}" class="btn btn-primary mb-3">
+  ➕ Add actor
+  </a>
+
+  <form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" placeholder="Searching for an actor..." value="{{ search_query }}" class="form-control">
+    <button type="submit" class="btn btn-outline-primary">🔍</button>
+  </div>
+  </form>
+  <hr class="my-5">
+  {% if actor_list %}
+  <table class="table table-bordered table-sm">
+    <thead class="table-dark">
+    <tr>
+      <th>Full  name</th>
+      <th>Count</th>
+      <th></th>
+    </tr>
+    </thead>
+  {% for actor in actor_list %}
+    <tr>
+      <td><a href="{% url 'catalog:actor_detail' pk=actor.pk %}">
+        {{ actor.first_name }} {{ actor.last_name }}
+      </a></td>
+      <td>{{ actor.movie_count }}</td>
+      <td>
+        <a href="{% url 'catalog:actor_delete' pk=actor.pk %}" class="btn btn-outline-danger">
+        🗑 Delete
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+
+  </table>
+  {% else %}
+    <p>No actors</p>
+  {% endif %}
+
+{% include "includes/pagination.html" %}
+{% endblock %}

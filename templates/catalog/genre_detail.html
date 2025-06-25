@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ genre.name }}|MovieCore{% endblock %}
+
+{% block content %}
+  <h2>🎞️ Genre: {{ genre.name }}</h2>
+
+  <hr class="my-5">
+  <h4>📽️ Movies in this genre:</h4>
+  {% if movies %}
+    <ul class="list-group">
+      {% for movie in movies %}
+        <li class="list-group-item">
+          <a href="{% url 'catalog:movie_detail' movie.pk %}">
+            {{ movie.title }}
+          </a>
+          ({{ movie.release_date|date:"Y" }}) — ⭐ {{ movie.rating }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">There are currently no movies in this genre.</p>
+  {% endif %}
+{% endblock %}

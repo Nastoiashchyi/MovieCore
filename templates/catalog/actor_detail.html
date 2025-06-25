@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ actor.first_name }} {{ actor.last_name }}|MovieCore{% endblock %}
+
+{% block content %}
+
+  <h2>{{ actor.first_name }} {{ actor.last_name }}</h2>
+  <hr class="my-5">
+  <h4>🎬 Participation in films:</h4>
+
+  {% if roles %}
+    <ul class="list-group">
+      {% for role in roles %}
+        <li class="list-group-item">
+          <strong>Movie:</strong>
+          <a href="{% url 'catalog:movie_detail' role.movie.pk %}">
+            {{ role.movie.title }}
+          </a><br>
+          <strong>Role:</strong> {{ role.character_name }}
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p class="text-muted">This actor has no film roles yet.</p>
+{% endif %}
+
+
+{% endblock %}

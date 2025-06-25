@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ movie.title }}|MovieCore{% endblock %}
+
+{% block content %}
+
+  <h2>{{ movie.title }}</h2>
+
+
+  <hr class="my-5">
+  <p><strong>Release date:</strong> {{ movie.release_date|date:"d M Y" }}</p>
+  <p><strong>Rating:</strong> ⭐ {{ movie.rating }}</p>
+  <p><strong>Genres:</strong>
+    {% for genre in movie.genres.all %}
+      <a href="{% url 'catalog:genre_detail' genre.pk %}" class="badge bg-secondary text-decoration-none me-1">
+        {{ genre.name }}
+      </a>
+    {% endfor %}
+  </p>
+  <p><strong>Directors:</strong>
+    {% for director in movie.directors.all %}
+      <a href="{% url 'catalog:director_detail' pk=director.pk %}">
+      {{ director.first_name }} {{ director.last_name }}
+      </a>{% if not forloop.last %}, {% endif %}
+      {% empty %}
+      No data
+    {% endfor %}
+  </p>
+  <p class="text-muted">{{ movie.description }}</p>
+
+  {% if user.is_authenticated %}
+    <form method="post" action="{% url 'catalog:toggle_director' movie.pk %}">
+      {% csrf_token %}
+      {% if user in movie.directors.all %}
+        <button type="submit" class="btn btn-danger mb-3">
+          Remove from directors
+        </button>
+      {% else %}
+        <button type="submit" class="btn btn-success mb-3">
+          🎬 Add to directors
+        </button>
+      {% endif %}
+    </form>
+  {% endif %}
+
+  <hr class="my-5">
+  <h4>🎭 Cast:</h4>
+  {% if roles %}
+    <ul class="list-group">
+      {% for role in roles %}
+        <li class="list-group-item">
+          <a href="{% url 'catalog:actor_detail' role.actor.pk %}">
+            <strong>{{ role.actor.first_name }} {{ role.actor.last_name }}</strong>
+          </a>
+          — {{ role.character_name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">This film has no cast listed yet.</p>
+  {% endif %}
+
+  <hr class="my-5">
+  <a href="{% url 'catalog:movie_delete' pk=movie.pk %}" class="btn btn-outline-danger float-end">
+  🗑 Delete
+  </a>
+  <a href="{% url 'catalog:movie_update' pk=movie.pk %}" class="btn btn-outline-primary">
+  ✏️ Edit the movie
+  </a>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Directors list|MovieCore{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Director list</h2>
+  <form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ search_query }}" class="form-control" placeholder="Searching for a director...">
+    <button type="submit" class="btn btn-outline-secondary">🔍</button>
+  </div>
+  </form>
+  <hr class="my-5">
+  {% if director_list %}
+    <table class="table table-bordered table-sm">
+      <thead class="table-dark">
+      <tr>
+        <th>Full name</th>
+        <th>Username</th>
+        <th>License card number</th>
+        <th>Movie</th>
+      </tr>
+      </thead>
+
+    {% for director in director_list %}
+      <tr>
+        <td>
+          <a href="{% url 'catalog:director_detail' pk=director.pk %}">
+          {{ director.first_name }} {{ director.last_name }}
+          </a>
+        </td>
+        <td>{{ director.username }} {% if user == director %} (Me){% endif %}</td>
+        <td>{{ director.license_card }}</td>
+        <td>{{ director.movie_count }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+  {% else %}
+    <p>No directors</p>
+  {% endif %}
+
+{% include "includes/pagination.html" %}
+{% endblock %}

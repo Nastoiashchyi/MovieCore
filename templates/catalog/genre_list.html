@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Genre list|MovieCore{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Genre list</h2>
+  <a href="{% url 'catalog:genre_create' %}" class="btn btn-primary mb-3">
+  ➕ Add genre
+  </a>
+  <form method="get" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ search_query }}" class="form-control" placeholder="Genre search...">
+    <button type="submit" class="btn btn-outline-secondary">🔍</button>
+  </div>
+  </form>
+  <hr class="my-5">
+  {% if genre_list %}
+  <table class="table table-bordered table-sm">
+    <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Count</th>
+      <th></th>
+    </tr>
+    </thead>
+  {% for genre in genre_list %}
+    <tr>
+      <td>
+        <a href="{% url 'catalog:genre_detail' genre.pk %}">
+        {{ genre.name }}
+        </a>
+      </td>
+      <td>{{ genre.movie_count }}</td>
+      <td>
+        <a href="{% url 'catalog:genre_delete' pk=genre.pk %}" class="btn btn-outline-danger">
+          🗑 Delete
+        </a>
+      </td>
+
+    </tr>
+  {% endfor %}
+
+  </table>
+  {% else %}
+    <p>No genres</p>
+  {% endif %}
+
+{% include "includes/pagination.html" %}
+{% endblock %}

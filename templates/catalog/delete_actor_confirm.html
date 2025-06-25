@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Remove|MovieCore{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h3>❗ Confirm deletion</h3>
+  <p>Do you really want to delete the actor? <strong>"{{ actor.first_name }} {{ actor.last_name }}"</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'catalog:genre_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
