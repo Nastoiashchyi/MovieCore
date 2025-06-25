@@ -17,16 +17,27 @@ class DirectorSignUpForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "password1", "password2", "first_name", "last_name", "email", "license_card"]
+        fields = [
+            "username",
+            "password1",
+            "password2",
+            "first_name",
+            "last_name",
+            "email",
+            "license_card",
+        ]
 
     def clean_license_card(self):
         license_card = self.cleaned_data["license_card"]
 
         if not re.match(r"^[A-Z]{2}\d{6}$", license_card):
-            raise ValidationError("The license format should be: 'AA123456' — 2: uppercase letters and 6: digits.")
+            raise ValidationError(
+                "The license format should be: 'AA123456' — 2: "
+                "uppercase letters and 6: digits."
+            )
 
-        User = get_user_model()
-        if User.objects.filter(license_card=license_card).exists():
+        user = get_user_model()
+        if user.objects.filter(license_card=license_card).exists():
             raise ValidationError("This license number is already in use.")
 
         return license_card
@@ -48,17 +59,11 @@ class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = ["title", "description", "release_date", "rating", "genres"]
-        widgets = {
-            "genres": forms.CheckboxSelectMultiple()
-        }
+        widgets = {"genres": forms.CheckboxSelectMultiple()}
 
 
 RoleInlineFormSet = inlineformset_factory(
-    Movie,
-    Role,
-    fields=["character_name", "actor"],
-    extra=4,
-    can_delete=True
+    Movie, Role, fields=["character_name", "actor"], extra=4, can_delete=True
 )
 
 
@@ -79,7 +84,3 @@ class GenreCreateForm(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-control"}),
         }
-
-
-
-

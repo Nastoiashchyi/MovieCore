@@ -23,7 +23,7 @@ class DirectorSignUpFormTests(TestCase):
             "first_name": "Eva",
             "last_name": "Green",
             "email": "eva@example.com",
-            "license_card": "CD789012"
+            "license_card": "CD789012",
         }
         form = DirectorSignUpForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -36,7 +36,7 @@ class DirectorSignUpFormTests(TestCase):
             "first_name": "Tom",
             "last_name": "Hardy",
             "email": "tom@example.com",
-            "license_card": "cd78"  # ❌ неправильний формат
+            "license_card": "cd78",  # ❌ неправильний формат
         }
         form = DirectorSignUpForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -51,7 +51,7 @@ class DirectorSignUpFormTests(TestCase):
             "first_name": "Chris",
             "last_name": "Nolan",
             "email": "chris@example.com",
-            "license_card": "AB123456"  # ❌ уже існує в базі
+            "license_card": "AB123456",  # ❌ уже існує в базі
         }
         form = DirectorSignUpForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -76,7 +76,9 @@ class GenreListViewSearchTest(TestCase):
 
 class MovieListViewSearchTest(TestCase):
     def setUp(self):
-        self.director = get_user_model().objects.create_user("dir", password="pass", license_card="LC123456")
+        self.director = get_user_model().objects.create_user(
+            "dir", password="pass", license_card="LC123456"
+        )
         self.client.login(username="dir", password="pass")
         Movie.objects.create(title="Inception", release_date="2010-07-16", rating=8.8)
         Movie.objects.create(title="Dunkirk", release_date="2017-07-21", rating=7.9)
@@ -102,10 +104,24 @@ class ActorListViewSearchTest(TestCase):
 
 class DirectorListViewSearchTest(TestCase):
     def setUp(self):
-        self.superuser = get_user_model().objects.create_superuser("admin", password="pass")
+        self.superuser = get_user_model().objects.create_superuser(
+            "admin", password="pass"
+        )
         self.client.login(username="admin", password="pass")
-        get_user_model().objects.create_user(username="nolan", first_name="Chris", last_name="Nolan", password="pass", license_card="LC0001")
-        get_user_model().objects.create_user(username="taika", first_name="Taika", last_name="Waititi", password="pass", license_card="LC0002")
+        get_user_model().objects.create_user(
+            username="nolan",
+            first_name="Chris",
+            last_name="Nolan",
+            password="pass",
+            license_card="LC0001",
+        )
+        get_user_model().objects.create_user(
+            username="taika",
+            first_name="Taika",
+            last_name="Waititi",
+            password="pass",
+            license_card="LC0002",
+        )
 
     def test_director_search(self):
         response = self.client.get(reverse("catalog:director_list"), {"q": "wait"})
@@ -115,7 +131,9 @@ class DirectorListViewSearchTest(TestCase):
 
 class NavigationTests(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username="testuser", password="pass", license_card="LC000001")
+        self.user = get_user_model().objects.create_user(
+            username="testuser", password="pass", license_card="LC000001"
+        )
         self.client.login(username="testuser", password="pass")
         self.genre = Genre.objects.create(name="Drama")
         self.actor = Actor.objects.create(first_name="Emma", last_name="Stone")
@@ -134,29 +152,39 @@ class NavigationTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_genre_detail_link(self):
-        response = self.client.get(reverse("catalog:genre_detail", args=[self.genre.pk]))
+        response = self.client.get(
+            reverse("catalog:genre_detail", args=[self.genre.pk])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.genre.name)
 
     def test_actor_detail_link(self):
-        response = self.client.get(reverse("catalog:actor_detail", args=[self.actor.pk]))
+        response = self.client.get(
+            reverse("catalog:actor_detail", args=[self.actor.pk])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.actor.first_name)
 
     def test_movie_detail_link(self):
-        response = self.client.get(reverse("catalog:movie_detail", args=[self.movie.pk]))
+        response = self.client.get(
+            reverse("catalog:movie_detail", args=[self.movie.pk])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.movie.title)
 
     def test_director_detail_link(self):
-        response = self.client.get(reverse("catalog:director_detail", args=[self.user.pk]))
+        response = self.client.get(
+            reverse("catalog:director_detail", args=[self.user.pk])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.user.get_full_name())
 
 
 class AuthLinkTests(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username="tester", password="securepass")
+        self.user = get_user_model().objects.create_user(
+            username="tester", password="securepass"
+        )
 
     def test_login_page_accessible(self):
         response = self.client.get(reverse("login"))  # стандартний шлях
@@ -182,7 +210,30 @@ class AuthLinkTests(TestCase):
             "first_name": "John",
             "last_name": "Doe",
             "email": "john@example.com",
-            "license_card": "AA123456"
+            "license_card": "AA123456",
         }
-        response = self.client.post(reverse("catalog:register_director"), data=form_data)
+        response = self.client.post(
+            reverse("catalog:register_director"), data=form_data
+        )
         self.assertEqual(response.status_code, 302)  # редірект після успіху
+
+
+class ToggleDirectorTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="dir", password="pass", license_card="LC123456"
+        )
+        self.client.login(username="dir", password="pass")
+        self.movie = Movie.objects.create(
+            title="Test", release_date="2024-01-01", rating=8
+        )
+
+    def test_toggle_director_add_and_remove(self):
+        url = reverse("catalog:toggle_director", args=[self.movie.pk])
+
+        response = self.client.post(url)
+        self.assertIn(self.user, self.movie.directors.all())
+
+        response = self.client.post(url)
+        self.movie.refresh_from_db()
+        self.assertNotIn(self.user, self.movie.directors.all())

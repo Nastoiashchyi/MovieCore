@@ -32,6 +32,7 @@ class Director(AbstractUser):
 class Actor(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+
     class Meta:
         ordering = ["first_name", "last_name"]
         verbose_name_plural = "actors"

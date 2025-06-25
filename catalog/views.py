@@ -6,8 +6,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from catalog.forms import DirectorSignUpForm, MovieCreateForm, RoleInlineFormSet, DirectorUpdateForm, ActorCreateForm, \
-    GenreCreateForm
+from catalog.forms import (
+    DirectorSignUpForm,
+    MovieCreateForm,
+    RoleInlineFormSet,
+    DirectorUpdateForm,
+    ActorCreateForm,
+    GenreCreateForm,
+)
 from catalog.models import Genre, Director, Movie, Actor
 
 
@@ -30,7 +36,8 @@ def index(request):
     }
     return render(request, "catalog/index.html", context=context)
 
-#class for GENRE
+
+# class for GENRE
 class GenreListView(LoginRequiredMixin, generic.ListView):
     model = Genre
     template_name = "catalog/genre_list.html"
@@ -38,9 +45,9 @@ class GenreListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        queryset = Genre.objects.annotate(
-            movie_count=Count("movie")
-        ).order_by("-movie_count")
+        queryset = Genre.objects.annotate(movie_count=Count("movie")).order_by(
+            "-movie_count"
+        )
 
         query = self.request.GET.get("q")
         if query:
@@ -77,7 +84,8 @@ class GenreDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "catalog/delete_genre_confirm.html"
     success_url = reverse_lazy("catalog:genre_list")
 
-#class for DIRECTOR
+
+# class for DIRECTOR
 class DirectorListView(LoginRequiredMixin, generic.ListView):
     model = Director
     template_name = "catalog/director_list.html"
@@ -85,9 +93,9 @@ class DirectorListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        queryset = Director.objects.annotate(
-            movie_count=Count("movie")
-        ).order_by("first_name", "last_name")
+        queryset = Director.objects.annotate(movie_count=Count("movie")).order_by(
+            "first_name", "last_name"
+        )
 
         query = self.request.GET.get("q")
         if query:
@@ -103,6 +111,30 @@ class DirectorListView(LoginRequiredMixin, generic.ListView):
         return context
 
 
+class RegisterDirectorView(generic.FormView):
+    template_name = "registration/register_director.html"
+    form_class = DirectorSignUpForm
+    success_url = reverse_lazy("catalog:index")
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
+
+
+class ToggleDirectorView(LoginRequiredMixin, generic.View):
+    def post(self, request, pk, *args, **kwargs):
+        movie = get_object_or_404(Movie, pk=pk)
+        user = request.user
+
+        if user in movie.directors.all():
+            movie.directors.remove(user)
+        else:
+            movie.directors.add(user)
+
+        return redirect("catalog:movie_detail", pk=pk)
+
+
 class DirectorUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = get_user_model()
     form_class = DirectorUpdateForm
@@ -114,6 +146,7 @@ class DirectorUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Update
     def test_func(self):
         # Дозволяємо редагувати самого себе або суперкористувачу
         return self.request.user == self.get_object() or self.request.user.is_superuser
+
 
 class DirectorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Director
@@ -135,7 +168,7 @@ class DirectorDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delete
         return self.request.user.is_superuser
 
 
-#class for ACTOR
+# class for ACTOR
 class ActorListView(LoginRequiredMixin, generic.ListView):
     model = Actor
     template_name = "catalog/actor_list.html"
@@ -184,7 +217,8 @@ class ActorDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "catalog/delete_actor_confirm.html"
     success_url = reverse_lazy("catalog:actor_list")
 
-#class for MOVIE
+
+# class for MOVIE
 class MovieListView(LoginRequiredMixin, generic.ListView):
     model = Movie
     template_name = "catalog/movie_list.html"
@@ -214,30 +248,6 @@ class MovieDetailView(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         context["roles"] = self.object.roles.select_related("actor")
         return context
-
-
-@login_required
-def toggle_director(request, pk):
-    movie = get_object_or_404(Movie, pk=pk)
-    user = request.user
-
-    if user in movie.directors.all():
-        movie.directors.remove(user)
-    else:
-        movie.directors.add(user)
-
-    return redirect("catalog:movie_detail", pk=pk)
-
-
-class RegisterDirectorView(generic.FormView):
-    template_name = "registration/register_director.html"
-    form_class = DirectorSignUpForm
-    success_url = reverse_lazy("catalog:index")
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return super().form_valid(form)
 
 
 class MovieCreateView(LoginRequiredMixin, generic.CreateView):
@@ -282,7 +292,9 @@ class MovieUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context["formset"] = RoleInlineFormSet(self.request.POST, instance=self.object)
+            context["formset"] = RoleInlineFormSet(
+                self.request.POST, instance=self.object
+            )
         else:
             context["formset"] = RoleInlineFormSet(instance=self.object)
         return context
@@ -311,4 +323,3 @@ class MovieDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 def no_license_view(request):
     return render(request, "catalog/no_license.html")
-
