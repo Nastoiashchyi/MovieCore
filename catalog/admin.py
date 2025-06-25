@@ -5,7 +5,7 @@ from .models import Director, Actor, Genre, Movie, Role
 
 @admin.register(Director)
 class DirectorAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ("license_card", )
+    list_display = UserAdmin.list_display + ("license_card",)
     list_filter = ("is_staff", "is_superuser", "is_active")
     search_fields = ("first_name", "last_name", "email", "username", "license_card")
     ordering = ("first_name",)
@@ -33,7 +33,11 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ("title", "release_date", "rating", )
+    list_display = (
+        "title",
+        "release_date",
+        "rating",
+    )
     list_filter = ("genres", "release_date", "directors")
     search_fields = ("title", "description")
     filter_horizontal = ("genres",)
