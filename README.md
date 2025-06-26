@@ -1,9 +1,8 @@
 # MovieCore
 
-
-Кінобаза для справжніх режисерів!  
-MovieCore — це Django-застосунок для створення, перегляду та адміністрування фільмів, акторів, жанрів і режисерів із автентифікацією та гнучкими ролями.
-
+A film database for real directors! MovieCore is a Django app for creating, 
+viewing, and managing movies, actors, genres, and directors — 
+with authentication and flexible role management.
 ---
 
 ![moviecore.png](static/screenshot/moviecore.png)
