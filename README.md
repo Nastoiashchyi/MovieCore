@@ -10,77 +10,75 @@ MovieCore — це Django-застосунок для створення, пер
 
 
 ---
-
-## ⚙️ Встановлення проєкту
-
-
 git clone https://github.com/your-username/moviecore.git
 cd moviecore
 
-# Створити віртуальне середовище
+# Create virtual environment
 python -m venv .venv
 source .venv/bin/activate
 
-# Встановити залежності
+# Install dependencies
 pip install -r requirements.txt
 
-# Застосувати міграції
+# Apply migrations
 python manage.py migrate
 
-# Завантажити демо-дані (опційно)
+# (Optional) Load demo data
 python manage.py loaddata movie_core_db_data.json
 
-# Створити суперкористувача (для доступу в адмінку)
+# Create superuser (for admin access)
 python manage.py createsuperuser
 
-Або використовуй admin.user  
-                 1qazcde3
+# Or use:
+#   admin.user  
+#   1qazcde3
 
-# Запустити сервер
+# Run server
 python manage.py runserver
 
 
-# Режисери
-Реєстрація: /register/
+# Directors
+Register at: /register/
 
-Формат ліцензії обов'язковий: AA123456 (2 великі літери + 6 цифр)
+License format is mandatory: AA123456 (2 uppercase letters + 6 digits)
 
-Без ліцензії створення фільму неможливе
+Film creation is restricted to licensed users
 
-Вхід / вихід: /login/ / /logout/
-
-
-
-# Функціонал сайту
-Фільми: створення, редагування, видалення, ролі акторів через FormSet, прив'язка жанрів
-
-Актори: сторінки з деталями, пошук, видалення
-
-Жанри: лічильник фільмів, створення, пошук, видалення
-
-Режисери: список, профілі, пошук, редагування себе
-
-Ролі: персонажі, прив’язка між актором та фільмом
-
-Головна: статистика + топ-3 фільми
-
-Сторінки захищені: доступ лише після входу
+Login / Logout: /login/ and /logout/
 
 
-# Пошук
-На сторінках movies/, actors/, genres/, directors/ реалізований пошук:
 
-# Тести
+# Site Features
+Movies: create, edit, delete, manage actor roles via FormSet, assign genres
+
+Actors: detail pages, search, delete
+
+Genres: movie counter, creation, search, delete
+
+Directors: list, profiles, search, self-edit
+
+Roles: characters, link actors to movies
+
+Homepage: stats + top 3 movies
+
+Access control: all pages require login
+
+
+# Search Functionality
+Available on pages: movies/, actors/, genres/, directors/
+
+
+# Tests
 python manage.py test
 
-Тести покривають:
+Tests cover:
 
-Валідацію форми реєстрації (license_card)
+Registration form validation (license_card)
 
-Пошук по списках
+Search within list views
 
-Перевірку переходів (detail-view)
+Detail view navigation
 
-Сторінки логіну, реєстрації, виходу
+Login, registration, logout pages
 
 
